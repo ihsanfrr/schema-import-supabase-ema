@@ -1,13 +1,9 @@
-import 'dart:io';
-
-import 'package:excel/excel.dart';
-
-import '../databases/outlet_database.dart';
+part of 'imports.dart';
 
 Future outletImport() async {
-  // TODO: masukkan path file xlsx yang tersimpan.
-  var file =
-      "/Users/ihsanfrr/Downloads/DATA BASE OUTLET CLUSTER MADIUN (2).xlsx";
+  String? file = stdin.readLineSync()!;
+  print(file);
+
   var bytes = File(file).readAsBytesSync();
   var excel = Excel.decodeBytes(bytes);
 

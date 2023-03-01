@@ -1,16 +1,9 @@
-import 'dart:io';
-
-import 'package:excel/excel.dart';
-import 'package:supabase/supabase.dart';
-
-SupabaseClient supabase = SupabaseClient(
-  'https://xsgwmtxkrfycnzttdpjo.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZ3dtdHhrcmZ5Y256dHRkcGpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk2Mjc4NjQsImV4cCI6MTk4NTIwMzg2NH0.4TbTywLCrf4y5EG2BP3v6f8mJHFinkkGoSOxVDSEbZM',
-);
+part of 'imports.dart';
 
 Future warehouseStockImport() async {
-  // TODO: masukkan path file xlsx yang tersimpan.
-  var file = "/Users/ihsanfrr/Downloads/Format Stok Gudang TAP MAGETAN 2.xlsx";
+  String? file = stdin.readLineSync()!;
+  print(file);
+
   var bytes = File(file).readAsBytesSync();
   var excel = Excel.decodeBytes(bytes);
 

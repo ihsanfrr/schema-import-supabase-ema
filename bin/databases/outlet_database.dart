@@ -1,9 +1,4 @@
-import 'package:supabase/supabase.dart';
-
-SupabaseClient supabase = SupabaseClient(
-  'https://xsgwmtxkrfycnzttdpjo.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZ3dtdHhrcmZ5Y256dHRkcGpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk2Mjc4NjQsImV4cCI6MTk4NTIwMzg2NH0.4TbTywLCrf4y5EG2BP3v6f8mJHFinkkGoSOxVDSEbZM',
-);
+part of 'databases.dart';
 
 class OutletDatabase {
   final String table = 'masterOutlets';

@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:change_case/change_case.dart';
-import 'package:excel/excel.dart';
-import 'package:supabase/supabase.dart';
-
-import '../databases/sales_database.dart';
+part of 'imports.dart';
 
 Future salesImport() async {
-  // TODO: masukkan path file xlsx yang tersimpan.
-  var file = "/Users/ihsanfrr/Downloads/Data Sales (1).xlsx";
+  String? file = stdin.readLineSync()!;
+  print(file);
+
   var bytes = File(file).readAsBytesSync();
   var excel = Excel.decodeBytes(bytes);
 

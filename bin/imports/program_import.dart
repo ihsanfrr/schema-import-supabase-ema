@@ -1,13 +1,9 @@
-import 'dart:io';
-
-import 'package:excel/excel.dart';
-
-import '../databases/program_database.dart';
+part of 'imports.dart';
 
 Future programImport() async {
-  // TODO: masukkan path file xlsx yang tersimpan.
-  var file =
-      "/Users/ihsanfrr/Downloads/Format Program, Segel & Orbit All TAP (5).xlsx";
+  String? file = stdin.readLineSync()!;
+  print(file);
+
   var bytes = File(file).readAsBytesSync();
   var excel = Excel.decodeBytes(bytes);
 
