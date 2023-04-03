@@ -68,6 +68,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "dart_clipboard",
+      "rootUri": "file:///Users/ihsanfrr/.pub-cache/hosted/pub.dartlang.org/dart_clipboard-0.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///Users/ihsanfrr/.pub-cache/hosted/pub.dartlang.org/equatable-2.0.5",
       "packageUri": "lib/",
@@ -76,6 +82,12 @@
     {
       "name": "excel",
       "rootUri": "file:///Users/ihsanfrr/.pub-cache/hosted/pub.dartlang.org/excel-2.0.0-null-safety-3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "ffi",
+      "rootUri": "file:///Users/ihsanfrr/.pub-cache/hosted/pub.dartlang.org/ffi-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -398,7 +410,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2023-02-26T15:30:09.174962Z",
+  "generated": "2023-03-01T12:45:00.427973Z",
   "generator": "pub",
   "generatorVersion": "2.17.1"
 }
