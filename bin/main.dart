@@ -37,7 +37,11 @@ main() async {
   //   password: 'password',
   // );
   // compareHistory();
-  // createHistory();
+  createHistory(
+    salesId: 0,
+    outletId: 0,
+    cash: 0,
+  );
   // createReceipt();
   // createReceiptDetails();
   // updateSomething(

@@ -1196,3 +1196,31 @@ class HistoryModel {
         'updatedAt': updatedAt,
       };
 }
+
+class InvoiceNumberModel {
+  final int? id;
+  final int clusterId;
+  final String code;
+  final int number;
+  final String? createdAt;
+  final String? updatedAt;
+
+  InvoiceNumberModel({
+    this.id,
+    required this.clusterId,
+    required this.code,
+    required this.number,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  factory InvoiceNumberModel.fromJson(Map<String, dynamic> json) =>
+      InvoiceNumberModel(
+        id: json['id'],
+        clusterId: json['clusterId'],
+        code: json['code'],
+        number: json['number'],
+        createdAt: json['createdAt'],
+        updatedAt: json['updatedAt'],
+      );
+}

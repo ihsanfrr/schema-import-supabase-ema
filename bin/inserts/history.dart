@@ -3,35 +3,94 @@ import 'dart:io';
 import '../databases/databases.dart';
 import '../handle_case/models.dart';
 
-createHistory() async {
+Future<String?> incrementAndGet({required int clusterId}) async {
+  try {
+    await supabase.rpc(
+      'incrementInvoiceNumber',
+      params: {'clusterid': clusterId},
+    );
+
+    InvoiceNumberModel invoiceNumber = await supabase
+        .from('invoiceNumbers')
+        .select()
+        .match({'clusterId': clusterId})
+        .limit(1)
+        .withConverter<InvoiceNumberModel>(
+          (data) => InvoiceNumberModel.fromJson(data[0]),
+        );
+
+    return '${invoiceNumber.code} ${invoiceNumber.number}';
+  } catch (e) {
+    print(e.toString());
+
+    return null;
+  }
+}
+
+createHistory({
+  required int salesId,
+  required int outletId,
+  required int cash,
+}) async {
   final result = await supabase
       .from('histories')
       .insert(
         HistoryModel(
-          salesId: 108,
-          outletId: 3049,
+          salesId: salesId,
+          outletId: outletId,
           type: 'dropItem',
           status: 'Success',
           data: {
             "bca": 0,
             "bni": 0,
-            "bri": 40062400,
-            "cash": 0,
-            "type": "Drop Item",
+            "bri": 0,
+            "cash": cash,
+            // "type": "Drop Item",
+            "type": "Top Up",
             "items": [],
             "mandiri": 0,
-            "nominal": 40062400,
+            "nominal": cash,
             "paidOff": true,
             "receiptLink": "",
             "paymentMethod": "Cash"
           },
-          createdAt:
-              DateTime(2023, 02, 27).add(Duration(hours: -7)).toIso8601String(),
+          createdAt: DateTime(2023, 03, 05).toIso8601String(),
         ),
       )
       .select();
 
   print(result[0]['id']);
+
+  List<dynamic> clusterId =
+      await supabase.from('masterSales').select().eq('id', salesId);
+
+  String? invoiceNumber =
+      await incrementAndGet(clusterId: clusterId[0]['clusterId']);
+
+  await supabase
+      .from('receipts')
+      .insert(
+        ReceiptModel(
+          salesId: result[0]['salesId'],
+          outletId: result[0]['outletId'],
+          historyId: result[0]['id'],
+          type: result[0]['data']['type'],
+          data: {
+            "nominal": result[0]['data']['nominal'],
+          },
+          paymentMethod: 'Cash',
+          cash: result[0]['data']['cash'],
+          bni: 0,
+          bri: 0,
+          bca: 0,
+          mandiri: 0,
+          receiptLink: '',
+          paidOff: true,
+          createdAt: result[0]['createdAt'],
+          invoiceNumber: invoiceNumber,
+        ).toJson(),
+      )
+      .select();
 
   exit(1);
 }
